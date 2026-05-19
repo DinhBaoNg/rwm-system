@@ -9,7 +9,7 @@ function AdminProfile() {
   const [infoForm, setInfoForm] = useState({ name: '', email: '' });
   const [isSavingInfo, setIsSavingInfo] = useState(false);
 
-  // State cho Form Mật Khẩu (theo format hình ảnh yêu cầu)
+  // State cho Form Mật Khẩu
   const [passwordForm, setPasswordForm] = useState({
     currentPassword: '',
     newPassword: '',
@@ -65,7 +65,7 @@ function AdminProfile() {
     }
   };
 
-  // Xử lý đổi mật khẩu (Theo format xác thực mật khẩu cũ)
+  // Xử lý đổi mật khẩu
   const handleChangePassword = async (e) => {
     e.preventDefault();
 
@@ -106,7 +106,7 @@ function AdminProfile() {
 
   return (
     <>
-      <h1 style={{ margin: '0 0 30px 0' }}>Hồ Sơ Của Bạn</h1>
+      <h1 style={{ margin: '0 0 30px 0', color: 'var(--primary-color)' }}>Hồ Sơ Của Bạn</h1>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '30px', alignItems: 'start' }}>
         
@@ -122,6 +122,7 @@ function AdminProfile() {
 
           <span className="badge admin" style={{ marginBottom: '25px', fontSize: '13px' }}>Quản trị viên</span>
 
+          {/* Trình bày theo chiều dọc & Không dùng màu trắng */}
           <div style={{ width: '100%', background: 'rgba(255,255,255,0.03)', padding: '20px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)', marginBottom: '30px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
             
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
@@ -154,18 +155,18 @@ function AdminProfile() {
           
           {/* Form 1: Cập nhật thông tin cơ bản */}
           <div className="chart-container" style={{ height: 'auto', padding: '30px' }}>
-            <h3 style={{ margin: '0 0 20px 0', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '10px' }}>
+            <h3 style={{ margin: '0 0 20px 0', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '10px', color: 'var(--primary-color)' }}>
               Cập nhật thông tin cá nhân
             </h3>
             <form onSubmit={handleUpdateInfo}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
                 <div>
-                  <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', color: 'var(--text-muted)' }}>Họ và tên mới</label>
-                  <input required type="text" value={infoForm.name} onChange={e => setInfoForm({ ...infoForm, name: e.target.value })} style={{ width: '100%', padding: '11px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: 'white' }} />
+                  <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', color: '#94a3b8' }}>Họ và tên mới</label>
+                  <input required type="text" value={infoForm.name} onChange={e => setInfoForm({ ...infoForm, name: e.target.value })} style={{ width: '100%', padding: '11px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: '#cbd5e1', outline: 'none' }} />
                 </div>
                 <div>
-                  <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', color: 'var(--text-muted)' }}>Email mới</label>
-                  <input required type="email" value={infoForm.email} onChange={e => setInfoForm({ ...infoForm, email: e.target.value })} style={{ width: '100%', padding: '11px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: 'white' }} />
+                  <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', color: '#94a3b8' }}>Email mới</label>
+                  <input required type="email" value={infoForm.email} onChange={e => setInfoForm({ ...infoForm, email: e.target.value })} style={{ width: '100%', padding: '11px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: '#cbd5e1', outline: 'none' }} />
                 </div>
               </div>
               <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -176,18 +177,18 @@ function AdminProfile() {
             </form>
           </div>
 
-          {/* Form 2: Thay đổi mật khẩu theo format hình ảnh */}
+          {/* Form 2: Thay đổi mật khẩu theo format hình ảnh (Bỏ (*) và Không dùng màu trắng) */}
           <div className="chart-container" style={{ height: 'auto', padding: '30px' }}>
-            <h3 style={{ margin: '0 0 25px 0', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '10px', fontSize: '18px', fontWeight: 'bold' }}>
+            <h3 style={{ margin: '0 0 25px 0', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '10px', fontSize: '18px', fontWeight: 'bold', color: '#38bdf8' }}>
               Thay đổi mật khẩu truy cập
             </h3>
             
             <form onSubmit={handleChangePassword} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
               
-              {/* Mật khẩu cũ (*) */}
+              {/* Mật khẩu cũ */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 2.5fr', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '15px' }}>
-                <label style={{ fontSize: '14px', color: 'rgba(255,255,255,0.85)', fontWeight: '500' }}>
-                  Mật khẩu cũ <span style={{ color: '#ef4444', fontWeight: 'bold' }}>(*)</span>
+                <label style={{ fontSize: '14px', color: '#94a3b8', fontWeight: '500' }}>
+                  Mật khẩu cũ
                 </label>
                 <input 
                   required 
@@ -195,14 +196,14 @@ function AdminProfile() {
                   placeholder="Nhập mật khẩu cũ"
                   value={passwordForm.currentPassword} 
                   onChange={e => setPasswordForm({ ...passwordForm, currentPassword: e.target.value })} 
-                  style={{ padding: '10px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: 'white', fontSize: '14px', outline: 'none' }} 
+                  style={{ padding: '10px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: '#cbd5e1', fontSize: '14px', outline: 'none' }} 
                 />
               </div>
 
-              {/* Mật khẩu (*) */}
+              {/* Mật khẩu */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 2.5fr', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '15px' }}>
-                <label style={{ fontSize: '14px', color: 'rgba(255,255,255,0.85)', fontWeight: '500' }}>
-                  Mật khẩu <span style={{ color: '#ef4444', fontWeight: 'bold' }}>(*)</span>
+                <label style={{ fontSize: '14px', color: '#94a3b8', fontWeight: '500' }}>
+                  Mật khẩu
                 </label>
                 <input 
                   required 
@@ -210,14 +211,14 @@ function AdminProfile() {
                   placeholder="Nhập mật khẩu mới"
                   value={passwordForm.newPassword} 
                   onChange={e => setPasswordForm({ ...passwordForm, newPassword: e.target.value })} 
-                  style={{ padding: '10px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: 'white', fontSize: '14px', outline: 'none' }} 
+                  style={{ padding: '10px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: '#cbd5e1', fontSize: '14px', outline: 'none' }} 
                 />
               </div>
 
-              {/* Nhập lại mật khẩu (*) */}
+              {/* Nhập lại mật khẩu */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 2.5fr', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '15px' }}>
-                <label style={{ fontSize: '14px', color: 'rgba(255,255,255,0.85)', fontWeight: '500' }}>
-                  Nhập lại mật khẩu <span style={{ color: '#ef4444', fontWeight: 'bold' }}>(*)</span>
+                <label style={{ fontSize: '14px', color: '#94a3b8', fontWeight: '500' }}>
+                  Nhập lại mật khẩu
                 </label>
                 <input 
                   required 
@@ -225,7 +226,7 @@ function AdminProfile() {
                   placeholder="Nhập lại mật khẩu mới"
                   value={passwordForm.confirmPassword} 
                   onChange={e => setPasswordForm({ ...passwordForm, confirmPassword: e.target.value })} 
-                  style={{ padding: '10px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: 'white', fontSize: '14px', outline: 'none' }} 
+                  style={{ padding: '10px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: '#cbd5e1', fontSize: '14px', outline: 'none' }} 
                 />
               </div>
 
@@ -240,7 +241,7 @@ function AdminProfile() {
                     borderRadius: '6px', 
                     fontSize: '15px',
                     fontWeight: 'bold',
-                    background: '#0d47a1', /* Màu xanh đậm giống thiết kế yêu cầu */
+                    background: '#0d47a1', 
                     color: 'white',
                     border: 'none',
                     cursor: 'pointer',
