@@ -75,8 +75,12 @@ app.post('/api/register', async (req, res) => {
   // Sinh mã token ngẫu nhiên
   const verifyToken = crypto.randomBytes(16).toString('hex');
 
+  // Sinh ID duy nhất cho người dùng (Đảm bảo không bao giờ trùng lặp ngay cả khi trùng tên)
+  // Format: RWM-XXXXXX (Ví dụ: RWM-8F2A1B)
+  const uniqueId = 'RWM-' + crypto.randomBytes(3).toString('hex').toUpperCase();
+
   const newUser = {
-    id: `U${String(users.length + 1).padStart(3, '0')}`,
+    id: uniqueId,
     name,
     email,
     password_hash: password,
