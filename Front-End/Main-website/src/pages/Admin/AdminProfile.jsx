@@ -68,12 +68,10 @@ function AdminProfile() {
       const data = await res.json();
 
       if (res.ok) {
-        // Cập nhật localStorage
         const updatedUser = { ...user, name: formData.name, email: formData.email };
         localStorage.setItem('user', JSON.stringify(updatedUser));
         setUser(updatedUser);
         
-        // Clear mật khẩu
         setFormData(prev => ({ 
           ...prev, 
           currentPassword: '', 
@@ -102,7 +100,7 @@ function AdminProfile() {
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '30px', alignItems: 'start' }}>
         
-        {/* Cột trái: Hiển thị thông tin tên và email trực quan, rõ nét */}
+        {/* Cột trái: Hiển thị thông tin tên và email trình bày dọc, đổi màu sắc nét */}
         <div className="chart-container" style={{ height: 'auto', padding: '35px 25px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div style={{
             width: '90px', height: '90px', borderRadius: '50%', background: 'rgba(16, 185, 129, 0.15)',
@@ -114,20 +112,29 @@ function AdminProfile() {
 
           <span className="badge admin" style={{ marginBottom: '25px', fontSize: '13px' }}>Quản trị viên</span>
 
-          {/* Hiển thị Tên và Email to, rõ ràng, dễ nhìn */}
-          <div style={{ width: '100%', background: 'rgba(255,255,255,0.03)', padding: '20px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)', marginBottom: '30px' }}>
-            <div style={{ marginBottom: '15px' }}>
-              <label style={{ fontSize: '12px', color: 'var(--text-muted)', display: 'block', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px' }}>Họ và tên</label>
-              <span style={{ fontSize: '18px', fontWeight: 'bold', color: 'white', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <i className="fa-solid fa-signature" style={{ color: 'var(--primary-color)', fontSize: '14px' }}></i> {user.name}
+          {/* Trình bày theo chiều dọc & Đổi màu chữ tránh dùng màu trắng */}
+          <div style={{ width: '100%', background: 'rgba(255,255,255,0.03)', padding: '20px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)', marginBottom: '30px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            
+            {/* Họ và tên: Dọc & Màu Xanh Lục (Primary Color) */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+              <i className="fa-solid fa-signature" style={{ color: 'var(--primary-color)', fontSize: '18px', marginBottom: '6px' }}></i>
+              <label style={{ fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px' }}>Họ và tên</label>
+              <span style={{ fontSize: '18px', fontWeight: 'bold', color: 'var(--primary-color)' }}>
+                {user.name}
               </span>
             </div>
-            <div>
-              <label style={{ fontSize: '12px', color: 'var(--text-muted)', display: 'block', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px' }}>Địa chỉ Email</label>
-              <span style={{ fontSize: '16px', color: 'rgba(255,255,255,0.8)', display: 'flex', alignItems: 'center', gap: '8px', wordBreak: 'break-all' }}>
-                <i className="fa-solid fa-envelope" style={{ color: 'var(--primary-color)', fontSize: '14px' }}></i> {user.email}
+
+            <div style={{ height: '1px', background: 'rgba(255,255,255,0.06)', width: '80%', margin: '0 auto' }}></div>
+
+            {/* Email: Dọc & Màu Xanh Dương Soft Blue */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+              <i className="fa-solid fa-envelope" style={{ color: '#38bdf8', fontSize: '18px', marginBottom: '6px' }}></i>
+              <label style={{ fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px' }}>Địa chỉ Email</label>
+              <span style={{ fontSize: '15px', fontWeight: '600', color: '#38bdf8', wordBreak: 'break-all' }}>
+                {user.email}
               </span>
             </div>
+            
           </div>
 
           <button className="logout-btn" onClick={handleLogout} style={{ width: '100%', padding: '12px', borderRadius: '8px' }}>
