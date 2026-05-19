@@ -16,8 +16,8 @@ function AdminLayout() {
       {/* Topbar */}
       <div className="admin-topbar">
         <div className="topbar-logo">
-          <img src={logo} alt="RWM Logo" className="admin-logo-img" />
           <h2>RWM</h2>
+          <img src={logo} alt="RWM Logo" className="admin-logo-img" />
         </div>
         
         <ul className="nav-links">
