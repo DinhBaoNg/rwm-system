@@ -12,7 +12,7 @@ Tệp này mô tả chi tiết các thông tin hiển thị và chức năng tư
     *   Ngày tham gia hệ thống.
 *   **Các tính năng khả dụng:**
     *   **Cập nhật thông tin:** Cho phép sửa Họ tên và Email.
-    *   **Đổi mật khẩu bảo mật:** Nhập mật khẩu mới để thay đổi trực tiếp (không cần xác minh lại qua email).
+    *   **Đổi mật khẩu bảo mật:** Nhập mật khẩu mới và bắt buộc điền mật khẩu hiện tại để xác thực thay đổi bảo mật.
     *   **Đăng xuất:** Thoát khỏi phiên làm việc và quay lại trang đăng nhập.
 
 ---

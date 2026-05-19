@@ -186,11 +186,18 @@ app.delete('/api/users/:id', (req, res) => {
 // API cập nhật thông tin người dùng (Admin)
 app.put('/api/users/:id', (req, res) => {
   const { id } = req.params;
-  const { name, email, password, role, status } = req.body;
+  const { name, email, password, currentPassword, role, status } = req.body;
   let users = readUsers();
   const userIndex = users.findIndex(u => u.id === id);
   if (userIndex === -1) {
     return res.status(404).json({ error: 'Không tìm thấy người dùng' });
+  }
+
+  // Nếu tự cập nhật (chế độ Profile) và có truyền currentPassword
+  if (currentPassword !== undefined && currentPassword !== '') {
+    if (users[userIndex].password_hash !== currentPassword) {
+      return res.status(400).json({ error: 'Mật khẩu hiện tại không chính xác!' });
+    }
   }
 
   // Cập nhật thông tin nếu có truyền lên
