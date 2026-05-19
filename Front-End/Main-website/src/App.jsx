@@ -8,6 +8,7 @@ import AdminDashboard from './pages/Admin/AdminDashboard';
 import AdminUsers from './pages/Admin/AdminUsers';
 
 import AdminSettings from './pages/Admin/AdminSettings';
+import AdminProfile from './pages/Admin/AdminProfile';
 
 function AuthForm() {
   const [isLoginActive, setIsLoginActive] = useState(true);
@@ -41,6 +42,9 @@ function AuthForm() {
       const data = await response.json();
       
       if (response.ok) {
+        // Lưu thông tin user vào localStorage
+        localStorage.setItem('user', JSON.stringify(data.user));
+        
         // Tự động chuyển hướng dựa trên Role
         if (data.user.role === 'Admin') {
           navigate('/admin');
@@ -238,6 +242,7 @@ function App() {
           <Route index element={<AdminDashboard />} />
           <Route path="users" element={<AdminUsers />} />
           <Route path="settings" element={<AdminSettings />} />
+          <Route path="profile" element={<AdminProfile />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -67,7 +67,7 @@ app.post('/api/login', (req, res) => {
     return res.json({ 
         message: 'Đăng nhập thành công',
         token: 'mock-jwt-token-123', 
-        user: { name: user.name, role: user.role, email: user.email } 
+        user: { id: user.id, name: user.name, role: user.role, email: user.email } 
     });
   }
   

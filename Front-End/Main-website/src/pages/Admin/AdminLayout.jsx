@@ -44,8 +44,8 @@ function AdminLayout() {
           </li>
         </ul>
 
-        <button className="logout-btn" onClick={handleLogout}>
-          <i className="fa-solid fa-right-from-bracket"></i> Đăng Xuất
+        <button className="profile-btn" onClick={() => navigate('/admin/profile')}>
+          <i className="fa-solid fa-user-circle"></i> Hồ sơ
         </button>
       </div>
 
