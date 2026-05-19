@@ -10,7 +10,7 @@
 }
 
 .admin-topbar {
-  height: 70px;
+  height: 85px; /* Tăng nhẹ chiều cao để chứa logo dọc */
   width: 100%;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
@@ -23,10 +23,26 @@
   z-index: 10;
 }
 
+.topbar-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.admin-logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
 .topbar-logo h2 {
-  font-size: 24px;
+  font-size: 13px;
   color: var(--primary-color);
   margin: 0;
+  font-weight: 800;
+  letter-spacing: 1.5px;
 }
 
 .nav-links {

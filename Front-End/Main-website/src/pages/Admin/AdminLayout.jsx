@@ -1,5 +1,6 @@
 import React from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
+import logo from '../../assets/logo.png';
 import './Admin.css';
 
 function AdminLayout() {
@@ -7,16 +8,16 @@ function AdminLayout() {
   const location = useLocation();
 
   const handleLogout = () => {
-    // Thực tế sẽ xóa token ở đây
     navigate('/');
   };
 
   return (
     <div className="admin-layout">
-      {/* Topbar thay thế cho Sidebar */}
+      {/* Topbar */}
       <div className="admin-topbar">
         <div className="topbar-logo">
-          <h2>RWM System</h2>
+          <img src={logo} alt="RWM Logo" className="admin-logo-img" />
+          <h2>RWM</h2>
         </div>
         
         <ul className="nav-links">
