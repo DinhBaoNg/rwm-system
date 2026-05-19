@@ -2,10 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate, useSearchParams } from 'react-router-dom';
 import './index.css';
 
+// Admin Pages
+import AdminLayout from './pages/Admin/AdminLayout';
+import AdminDashboard from './pages/Admin/AdminDashboard';
+import AdminUsers from './pages/Admin/AdminUsers';
+
 function AuthForm() {
   const [isLoginActive, setIsLoginActive] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   // States
   const [loginEmail, setLoginEmail] = useState('');
@@ -33,12 +39,17 @@ function AuthForm() {
       const data = await response.json();
       
       if (response.ok) {
-        alert(`Đăng nhập thành công!\nXin chào ${data.user.name} (${data.user.role})`);
+        // Tự động chuyển hướng dựa trên Role
+        if (data.user.role === 'Admin') {
+          navigate('/admin');
+        } else {
+          alert(`Đăng nhập thành công!\nXin chào ${data.user.name}. Giao diện của ${data.user.role} đang được phát triển!`);
+        }
       } else {
         alert(`Thất bại: ${data.error}`);
       }
     } catch (error) {
-      alert("Lỗi kết nối tới máy chủ (Backend cổng 5001 chưa bật)");
+      alert("Lỗi kết nối tới máy chủ (Render backend chưa bật hoặc quá tải)");
     } finally {
       setIsLoading(false);
     }
@@ -203,6 +214,15 @@ function VerifyEmail() {
   );
 }
 
+// Placeholder cho các trang chưa làm
+const Placeholder = ({ title }) => (
+  <div style={{ textAlign: 'center', marginTop: '100px' }}>
+    <i className="fa-solid fa-person-digging fa-4x" style={{ color: 'var(--primary-color)', marginBottom: '20px' }}></i>
+    <h1>{title}</h1>
+    <p>Tính năng đang trong quá trình phát triển.</p>
+  </div>
+);
+
 // Khởi tạo React Router
 function App() {
   return (
@@ -210,6 +230,13 @@ function App() {
       <Routes>
         <Route path="/" element={<AuthForm />} />
         <Route path="/verify" element={<VerifyEmail />} />
+        
+        {/* Các Route của Admin */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<AdminDashboard />} />
+          <Route path="users" element={<AdminUsers />} />
+          <Route path="settings" element={<Placeholder title="Cấu hình hệ thống" />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

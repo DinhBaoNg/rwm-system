@@ -143,6 +143,22 @@ app.post('/api/verify', (req, res) => {
   res.json({ message: 'Tài khoản của bạn đã được kích hoạt thành công!' });
 });
 
+// API lấy danh sách người dùng
+app.get('/api/users', (req, res) => {
+  const users = readUsers();
+  // Lược bỏ các thông tin nhạy cảm trước khi gửi về frontend
+  const safeUsers = users.map(u => ({
+    id: u.id,
+    name: u.name,
+    email: u.email,
+    role: u.role,
+    status: u.status,
+    is_verified: u.is_verified,
+    created_at: u.created_at
+  }));
+  res.json(safeUsers);
+});
+
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
   console.log(`Backend server is running on port ${PORT}`);
