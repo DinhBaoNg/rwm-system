@@ -13,11 +13,10 @@ function AdminLayout() {
 
   return (
     <div className="admin-layout">
-      {/* Sidebar */}
-      <div className="admin-sidebar">
-        <div className="sidebar-header">
+      {/* Topbar thay thế cho Sidebar */}
+      <div className="admin-topbar">
+        <div className="topbar-logo">
           <h2>RWM System</h2>
-          <p>Admin Control Panel</p>
         </div>
         
         <ul className="nav-links">
