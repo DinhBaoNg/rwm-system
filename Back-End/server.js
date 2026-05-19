@@ -183,6 +183,27 @@ app.delete('/api/users/:id', (req, res) => {
   res.json({ message: 'Đã xóa người dùng thành công' });
 });
 
+// API cập nhật thông tin người dùng (Admin)
+app.put('/api/users/:id', (req, res) => {
+  const { id } = req.params;
+  const { name, email, password, role, status } = req.body;
+  let users = readUsers();
+  const userIndex = users.findIndex(u => u.id === id);
+  if (userIndex === -1) {
+    return res.status(404).json({ error: 'Không tìm thấy người dùng' });
+  }
+
+  // Cập nhật thông tin nếu có truyền lên
+  if (name !== undefined) users[userIndex].name = name;
+  if (email !== undefined) users[userIndex].email = email;
+  if (password !== undefined && password !== '') users[userIndex].password_hash = password;
+  if (role !== undefined) users[userIndex].role = role;
+  if (status !== undefined) users[userIndex].status = status;
+
+  writeUsers(users);
+  res.json({ message: 'Cập nhật người dùng thành công', user: users[userIndex] });
+});
+
 // API Admin tạo người dùng (không cần xác minh email)
 app.post('/api/users/admin-create', (req, res) => {
   const { name, email, password, role } = req.body;

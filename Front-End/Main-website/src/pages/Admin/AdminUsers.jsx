@@ -5,11 +5,18 @@ function AdminUsers() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Modal State
+  // Modals state
   const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
   const [formData, setFormData] = useState({
     name: '', email: '', password: '', role: 'Resident'
+  });
+
+  const [editingUser, setEditingUser] = useState(null);
+  const [editFormData, setEditFormData] = useState({
+    name: '', email: '', password: '', role: 'Resident', status: 'active'
   });
 
   const apiUrl = process.env.NODE_ENV === 'development' 
@@ -66,8 +73,45 @@ function AdminUsers() {
       if (res.ok) {
         setShowAddModal(false);
         setFormData({ name: '', email: '', password: '', role: 'Resident' });
-        fetchUsers(); // Tải lại danh sách
+        fetchUsers();
         alert("Thêm người dùng thành công!");
+      } else {
+        alert(data.error);
+      }
+    } catch (err) {
+      alert("Lỗi kết nối tới máy chủ.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleEditClick = (user) => {
+    setEditingUser(user);
+    setEditFormData({
+      name: user.name,
+      email: user.email,
+      password: '', // Để trống nếu không muốn đổi mật khẩu
+      role: user.role,
+      status: user.status || 'active'
+    });
+    setShowEditModal(true);
+  };
+
+  const handleUpdateUser = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      const res = await fetch(`${apiUrl}/users/${editingUser.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(editFormData)
+      });
+      const data = await res.json();
+      
+      if (res.ok) {
+        setShowEditModal(false);
+        fetchUsers();
+        alert("Cập nhật thông tin thành công!");
       } else {
         alert(data.error);
       }
@@ -87,8 +131,11 @@ function AdminUsers() {
     }
   };
 
-  const getStatusBadge = (isVerified) => {
-    return isVerified 
+  const getStatusBadge = (user) => {
+    if (user.status === 'locked') {
+      return <span className="badge unverified" style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444' }}>Đã khóa</span>;
+    }
+    return user.is_verified 
       ? <span className="badge verified">Đã xác minh</span> 
       : <span className="badge unverified">Chưa xác minh</span>;
   };
@@ -133,10 +180,13 @@ function AdminUsers() {
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>{getRoleBadge(user.role)}</td>
-                  <td>{getStatusBadge(user.is_verified)}</td>
+                  <td>{getStatusBadge(user)}</td>
                   <td>{new Date(user.created_at).toLocaleDateString('vi-VN')}</td>
                   <td>
                     <div style={{ display: 'flex', gap: '15px' }}>
+                      <button style={{ background: 'transparent', border: 'none', color: '#3b82f6', cursor: 'pointer', fontSize: '16px' }} title="Sửa" onClick={() => handleEditClick(user)}>
+                        <i className="fa-solid fa-pen-to-square"></i>
+                      </button>
                       <button style={{ background: 'transparent', border: 'none', color: '#ef4444', cursor: 'pointer', fontSize: '16px' }} title="Xóa" onClick={() => handleDelete(user.id, user.name)}>
                         <i className="fa-solid fa-trash"></i>
                       </button>
@@ -195,6 +245,58 @@ function AdminUsers() {
                 <button type="button" onClick={() => setShowAddModal(false)} style={{ padding: '10px 15px', borderRadius: '8px', background: 'transparent', color: 'white', border: '1px solid rgba(255,255,255,0.2)', cursor: 'pointer' }}>Hủy</button>
                 <button type="submit" className="btn primary-btn" style={{ width: 'auto', padding: '10px 15px', borderRadius: '8px' }} disabled={isSubmitting}>
                   {isSubmitting ? 'Đang tạo...' : 'Tạo Tài Khoản'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Modal Chỉnh Sửa Người Dùng & Reset Password */}
+      {showEditModal && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', 
+          background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(5px)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 999
+        }}>
+          <div style={{
+            background: 'var(--background)', padding: '30px', borderRadius: '16px',
+            width: '400px', border: '1px solid rgba(255,255,255,0.1)', boxShadow: '0 20px 40px rgba(0,0,0,0.4)'
+          }}>
+            <h2 style={{ margin: '0 0 20px 0' }}>Chỉnh Sửa Người Dùng</h2>
+            <form onSubmit={handleUpdateUser}>
+              <div style={{ marginBottom: '15px' }}>
+                <label style={{ display: 'block', marginBottom: '5px', fontSize: '14px', color: 'var(--text-muted)' }}>Họ và tên</label>
+                <input required type="text" value={editFormData.name} onChange={e => setEditFormData({...editFormData, name: e.target.value})} style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: 'white' }} />
+              </div>
+              <div style={{ marginBottom: '15px' }}>
+                <label style={{ display: 'block', marginBottom: '5px', fontSize: '14px', color: 'var(--text-muted)' }}>Email</label>
+                <input required type="email" value={editFormData.email} onChange={e => setEditFormData({...editFormData, email: e.target.value})} style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: 'white' }} />
+              </div>
+              <div style={{ marginBottom: '15px' }}>
+                <label style={{ display: 'block', marginBottom: '5px', fontSize: '14px', color: 'var(--text-muted)' }}>Đổi mật khẩu mới (để trống nếu giữ nguyên)</label>
+                <input type="text" placeholder="Nhập mật khẩu mới" value={editFormData.password} onChange={e => setEditFormData({...editFormData, password: e.target.value})} style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: 'white' }} />
+              </div>
+              <div style={{ marginBottom: '15px' }}>
+                <label style={{ display: 'block', marginBottom: '5px', fontSize: '14px', color: 'var(--text-muted)' }}>Vai trò</label>
+                <select required value={editFormData.role} onChange={e => setEditFormData({...editFormData, role: e.target.value})} style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', background: 'var(--background)', color: 'white' }}>
+                  <option value="Resident">Cư dân</option>
+                  <option value="Staff">Nhân viên thu gom</option>
+                  <option value="Manager">Quản lý khu</option>
+                  <option value="Admin">Quản trị viên</option>
+                </select>
+              </div>
+              <div style={{ marginBottom: '25px' }}>
+                <label style={{ display: 'block', marginBottom: '5px', fontSize: '14px', color: 'var(--text-muted)' }}>Trạng thái tài khoản</label>
+                <select required value={editFormData.status} onChange={e => setEditFormData({...editFormData, status: e.target.value})} style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', background: 'var(--background)', color: 'white' }}>
+                  <option value="active">Đang hoạt động (Active)</option>
+                  <option value="locked">Khóa tài khoản (Locked)</option>
+                </select>
+              </div>
+              <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
+                <button type="button" onClick={() => setShowEditModal(false)} style={{ padding: '10px 15px', borderRadius: '8px', background: 'transparent', color: 'white', border: '1px solid rgba(255,255,255,0.2)', cursor: 'pointer' }}>Hủy</button>
+                <button type="submit" className="btn primary-btn" style={{ width: 'auto', padding: '10px 15px', borderRadius: '8px' }} disabled={isSubmitting}>
+                  {isSubmitting ? 'Đang lưu...' : 'Lưu Thay Đổi'}
                 </button>
               </div>
             </form>
