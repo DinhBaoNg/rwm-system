@@ -7,6 +7,8 @@ import AdminLayout from './pages/Admin/AdminLayout';
 import AdminDashboard from './pages/Admin/AdminDashboard';
 import AdminUsers from './pages/Admin/AdminUsers';
 
+import AdminSettings from './pages/Admin/AdminSettings';
+
 function AuthForm() {
   const [isLoginActive, setIsLoginActive] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
@@ -235,7 +237,7 @@ function App() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboard />} />
           <Route path="users" element={<AdminUsers />} />
-          <Route path="settings" element={<Placeholder title="Cấu hình hệ thống" />} />
+          <Route path="settings" element={<AdminSettings />} />
         </Route>
       </Routes>
     </BrowserRouter>

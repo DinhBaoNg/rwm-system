@@ -11,6 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 const usersFilePath = path.join(__dirname, '../Data/users.json');
+const settingsFilePath = path.join(__dirname, '../Data/settings.json');
 
 const readUsers = () => {
   if (!fs.existsSync(usersFilePath)) return [];
@@ -20,6 +21,16 @@ const readUsers = () => {
 
 const writeUsers = (users) => {
   fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2));
+};
+
+const readSettings = () => {
+  if (!fs.existsSync(settingsFilePath)) return { zones: [], wasteTypes: [] };
+  const data = fs.readFileSync(settingsFilePath);
+  return JSON.parse(data);
+};
+
+const writeSettings = (settings) => {
+  fs.writeFileSync(settingsFilePath, JSON.stringify(settings, null, 2));
 };
 
 // Cấu hình Ethereal Email để test
@@ -157,6 +168,60 @@ app.get('/api/users', (req, res) => {
     created_at: u.created_at
   }));
   res.json(safeUsers);
+});
+
+// API xóa người dùng (Admin)
+app.delete('/api/users/:id', (req, res) => {
+  const { id } = req.params;
+  let users = readUsers();
+  const initialLength = users.length;
+  users = users.filter(u => u.id !== id);
+  if (users.length === initialLength) {
+    return res.status(404).json({ error: 'Không tìm thấy người dùng để xóa' });
+  }
+  writeUsers(users);
+  res.json({ message: 'Đã xóa người dùng thành công' });
+});
+
+// API Admin tạo người dùng (không cần xác minh email)
+app.post('/api/users/admin-create', (req, res) => {
+  const { name, email, password, role } = req.body;
+  const users = readUsers();
+  
+  if (users.find(u => u.email === email)) {
+    return res.status(400).json({ error: 'Email này đã được đăng ký' });
+  }
+
+  const uniqueId = 'RWM-' + crypto.randomBytes(3).toString('hex').toUpperCase();
+
+  const newUser = {
+    id: uniqueId,
+    name,
+    email,
+    password_hash: password, // Mặc định do admin đặt
+    role,
+    status: 'active',
+    is_verified: true, // Xác minh sẵn
+    verify_token: null,
+    created_at: new Date().toISOString()
+  };
+
+  users.push(newUser);
+  writeUsers(users);
+  res.json({ message: 'Tạo tài khoản thành công' });
+});
+
+// API Lấy cấu hình hệ thống
+app.get('/api/settings', (req, res) => {
+  const settings = readSettings();
+  res.json(settings);
+});
+
+// API Cập nhật cấu hình hệ thống
+app.post('/api/settings', (req, res) => {
+  const newSettings = req.body;
+  writeSettings(newSettings);
+  res.json({ message: 'Đã lưu cấu hình thành công' });
 });
 
 const PORT = process.env.PORT || 5001;

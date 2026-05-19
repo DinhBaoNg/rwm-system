@@ -1,0 +1,11 @@
+{
+  "zones": [
+    { "id": "Z001", "name": "Quận 1, TP.HCM", "status": "active" },
+    { "id": "Z002", "name": "Quận 10, TP.HCM", "status": "active" }
+  ],
+  "wasteTypes": [
+    { "id": "W001", "name": "Rác Hữu Cơ", "color": "#10b981", "pricePerKg": 0 },
+    { "id": "W002", "name": "Rác Tái Chế", "color": "#3b82f6", "pricePerKg": 2000 },
+    { "id": "W003", "name": "Rác Vô Cơ", "color": "#f59e0b", "pricePerKg": 0 }
+  ]
+}
