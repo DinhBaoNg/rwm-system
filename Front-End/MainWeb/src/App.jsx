@@ -25,7 +25,7 @@ function AuthForm() {
     setIsLoading(true);
     
     try {
-      const response = await fetch('http://localhost:5001/api/login', {
+      const response = await fetch('https://rwm-system-jkon.onrender.com/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: loginEmail, password: loginPassword })
@@ -49,7 +49,7 @@ function AuthForm() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5001/api/register', {
+      const response = await fetch('https://rwm-system-jkon.onrender.com/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -159,7 +159,7 @@ function VerifyEmail() {
       return;
     }
     
-    fetch('http://localhost:5001/api/verify', {
+    fetch('https://rwm-system-jkon.onrender.com/api/verify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token })
