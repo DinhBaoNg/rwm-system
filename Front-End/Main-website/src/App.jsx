@@ -9,6 +9,7 @@ import AdminUsers from './pages/Admin/AdminUsers';
 
 import AdminSettings from './pages/Admin/AdminSettings';
 import AdminProfile from './pages/Admin/AdminProfile';
+import SystemInfo from './pages/Common/SystemInfo';
 
 function AuthForm() {
   const [isLoginActive, setIsLoginActive] = useState(true);
@@ -243,6 +244,7 @@ function App() {
           <Route path="users" element={<AdminUsers />} />
           <Route path="settings" element={<AdminSettings />} />
           <Route path="profile" element={<AdminProfile />} />
+          <Route path="info" element={<SystemInfo />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -17,3 +17,7 @@ Tệp này mô tả danh sách các chức năng sẽ xuất hiện trên màn h
 ## 4. Xử lý Phản ánh (Feedback Handling)
 - **Tiếp nhận phản ánh:** Đọc các phản ánh (chứa hình ảnh, vị trí GPS) từ Cư dân.
 - **Điều phối xử lý:** Phân công nhân viên đi xử lý các điểm rác tồn đọng đột xuất và cập nhật trạng thái "Đã xử lý".
+
+## 5. Trang Thông Tin Hệ Thống (About Website)
+- **Xem hướng dẫn cư dân:** Xem trang thông tin hướng dẫn tính năng hệ thống dành cho người dân để phục vụ tư vấn giải đáp khi cần thiết.
+- **Xem thông tin liên hệ:** Hiển thị hotline hỗ trợ kỹ thuật của khu vực.

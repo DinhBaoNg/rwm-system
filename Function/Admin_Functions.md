@@ -19,3 +19,7 @@ Tệp này mô tả danh sách các chức năng sẽ xuất hiện trên màn h
 ## 4. Báo cáo & Phân tích (Reports & Analytics)
 - **Xuất báo cáo:** Chức năng xuất dữ liệu ra file Excel/PDF để báo cáo lên cấp trên.
 - **Đánh giá hiệu suất:** Xem bảng xếp hạng hiệu quả thu gom rác giữa các khu vực (Zone) khác nhau.
+
+## 5. Trang Thông Tin Hệ Thống (About Website)
+- **Xem nội dung thông tin:** Xem trang giới thiệu tính năng website và thông tin hướng dẫn dành cho cư dân.
+- **Cập nhật hướng dẫn:** Admin có quyền chỉnh sửa nội dung bài viết hướng dẫn sử dụng website, quy trình phân loại rác và thông tin đường dây nóng hỗ trợ.

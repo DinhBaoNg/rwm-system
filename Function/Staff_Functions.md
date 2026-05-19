@@ -15,3 +15,6 @@ Tệp này mô tả danh sách các chức năng sẽ xuất hiện trên màn h
 
 ## 4. Nhận Thông báo Khẩn (Push Notifications)
 - **Lệnh điều động đột xuất:** Nhận thông báo (chuông/rung) khi Manager yêu cầu đi dọn một điểm rác phản ánh khẩn cấp gần vị trí hiện tại.
+
+## 5. Trang Thông Tin Hệ Thống (About Website)
+- **Xem thông tin chung:** Xem trang giới thiệu quy trình làm việc, vai trò và thông tin liên hệ hỗ trợ nhân viên thu gom khi gặp sự cố trên tuyến đường.

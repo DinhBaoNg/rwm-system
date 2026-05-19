@@ -16,3 +16,8 @@ Tệp này mô tả danh sách các chức năng sẽ xuất hiện trên màn h
 
 ## 4. Kiến Thức & Hướng Dẫn (Education & Guides)
 - **Hướng dẫn phân loại rác:** Cung cấp tài liệu/hình ảnh hướng dẫn cách phân loại rác tại nguồn (Hữu cơ, vô cơ) đúng chuẩn của khu phố.
+
+## 5. Trang Thông Tin Hệ Thống (About Website)
+- **Giới thiệu chức năng chính:** Hướng dẫn chi tiết cho người dân về cách hoạt động của website (cách gửi phản ánh rác tồn đọng, cách xem lịch trình thu gom, ý nghĩa của điểm tích lũy và cách đổi điểm).
+- **Ý nghĩa & Mục tiêu:** Truyền tải thông điệp bảo vệ môi trường, nâng cao ý thức phân loại rác thải tại nguồn và sự đồng hành của cộng đồng.
+- **Liên hệ khẩn cấp:** Cung cấp thông tin Hotline, Email hỗ trợ giải đáp nhanh của các cơ quan quản lý môi trường đô thị.

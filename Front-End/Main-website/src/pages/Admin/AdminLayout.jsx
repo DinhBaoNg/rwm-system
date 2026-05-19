@@ -42,6 +42,13 @@ function AdminLayout() {
             <i className="fa-solid fa-gear"></i>
             Cấu hình
           </li>
+          <li 
+            className={location.pathname === '/admin/info' ? 'active' : ''} 
+            onClick={() => navigate('/admin/info')}
+          >
+            <i className="fa-solid fa-circle-info"></i>
+            Thông tin
+          </li>
         </ul>
 
         <button className="profile-btn" onClick={() => navigate('/admin/profile')}>
