@@ -106,29 +106,29 @@ function AdminProfile() {
 
   return (
     <>
-      <h1 style={{ margin: '0 0 30px 0', color: 'var(--primary-color)' }}>Hồ Sơ Của Bạn</h1>
+      <h1 style={{ margin: '0 0 30px 0', color: 'var(--primary-color)', fontSize: '32px' }}>Hồ Sơ Của Bạn</h1>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '30px', alignItems: 'start' }}>
         
         {/* Cột trái: Thông tin tổng quan */}
         <div className="chart-container" style={{ height: 'auto', padding: '35px 25px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div style={{
-            width: '90px', height: '90px', borderRadius: '50%', background: 'rgba(16, 185, 129, 0.15)',
+            width: '100px', height: '100px', borderRadius: '50%', background: 'rgba(16, 185, 129, 0.15)',
             display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px',
-            color: 'var(--primary-color)', fontSize: '36px', border: '1px solid rgba(16, 185, 129, 0.3)'
+            color: 'var(--primary-color)', fontSize: '40px', border: '1px solid rgba(16, 185, 129, 0.3)'
           }}>
             <i className="fa-solid fa-user-tie"></i>
           </div>
 
-          <span className="badge admin" style={{ marginBottom: '25px', fontSize: '13px' }}>Quản trị viên</span>
+          <span className="badge admin" style={{ marginBottom: '25px', fontSize: '14px', padding: '6px 16px' }}>Quản trị viên</span>
 
-          {/* Trình bày theo chiều dọc & Không dùng màu trắng */}
+          {/* Trình bày theo chiều dọc & Tăng kích thước phông chữ */}
           <div style={{ width: '100%', background: 'rgba(255,255,255,0.03)', padding: '20px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)', marginBottom: '30px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
             
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-              <i className="fa-solid fa-signature" style={{ color: 'var(--primary-color)', fontSize: '18px', marginBottom: '6px' }}></i>
-              <label style={{ fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px' }}>Họ và tên</label>
-              <span style={{ fontSize: '18px', fontWeight: 'bold', color: 'var(--primary-color)' }}>
+              <i className="fa-solid fa-signature" style={{ color: 'var(--primary-color)', fontSize: '20px', marginBottom: '6px' }}></i>
+              <label style={{ fontSize: '13px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px' }}>Họ và tên</label>
+              <span style={{ fontSize: '20px', fontWeight: 'bold', color: 'var(--primary-color)' }}>
                 {user.name}
               </span>
             </div>
@@ -136,16 +136,16 @@ function AdminProfile() {
             <div style={{ height: '1px', background: 'rgba(255,255,255,0.06)', width: '80%', margin: '0 auto' }}></div>
 
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-              <i className="fa-solid fa-envelope" style={{ color: '#38bdf8', fontSize: '18px', marginBottom: '6px' }}></i>
-              <label style={{ fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px' }}>Địa chỉ Email</label>
-              <span style={{ fontSize: '15px', fontWeight: '600', color: '#38bdf8', wordBreak: 'break-all' }}>
+              <i className="fa-solid fa-envelope" style={{ color: '#38bdf8', fontSize: '20px', marginBottom: '6px' }}></i>
+              <label style={{ fontSize: '13px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px' }}>Địa chỉ Email</label>
+              <span style={{ fontSize: '17px', fontWeight: '600', color: '#38bdf8', wordBreak: 'break-all' }}>
                 {user.email}
               </span>
             </div>
             
           </div>
 
-          <button className="logout-btn" onClick={handleLogout} style={{ width: '100%', padding: '12px', borderRadius: '8px' }}>
+          <button className="logout-btn" onClick={handleLogout} style={{ width: '100%', padding: '14px', borderRadius: '8px', fontSize: '16px' }}>
             <i className="fa-solid fa-right-from-bracket"></i> Đăng Xuất Hệ Thống
           </button>
         </div>
@@ -155,39 +155,39 @@ function AdminProfile() {
           
           {/* Form 1: Cập nhật thông tin cơ bản */}
           <div className="chart-container" style={{ height: 'auto', padding: '30px' }}>
-            <h3 style={{ margin: '0 0 20px 0', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '10px', color: 'var(--primary-color)' }}>
+            <h3 style={{ margin: '0 0 20px 0', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '10px', color: 'var(--primary-color)', fontSize: '20px' }}>
               Cập nhật thông tin cá nhân
             </h3>
             <form onSubmit={handleUpdateInfo}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
                 <div>
-                  <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', color: '#94a3b8' }}>Họ và tên mới</label>
-                  <input required type="text" value={infoForm.name} onChange={e => setInfoForm({ ...infoForm, name: e.target.value })} style={{ width: '100%', padding: '11px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: '#cbd5e1', outline: 'none' }} />
+                  <label style={{ display: 'block', marginBottom: '8px', fontSize: '16px', color: '#94a3b8', fontWeight: '500' }}>Họ và tên mới</label>
+                  <input required type="text" value={infoForm.name} onChange={e => setInfoForm({ ...infoForm, name: e.target.value })} style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: '#cbd5e1', fontSize: '16px', outline: 'none' }} />
                 </div>
                 <div>
-                  <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', color: '#94a3b8' }}>Email mới</label>
-                  <input required type="email" value={infoForm.email} onChange={e => setInfoForm({ ...infoForm, email: e.target.value })} style={{ width: '100%', padding: '11px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: '#cbd5e1', outline: 'none' }} />
+                  <label style={{ display: 'block', marginBottom: '8px', fontSize: '16px', color: '#94a3b8', fontWeight: '500' }}>Email mới</label>
+                  <input required type="email" value={infoForm.email} onChange={e => setInfoForm({ ...infoForm, email: e.target.value })} style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: '#cbd5e1', fontSize: '16px', outline: 'none' }} />
                 </div>
               </div>
               <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <button type="submit" className="btn primary-btn" style={{ width: 'auto', padding: '10px 25px', borderRadius: '6px' }} disabled={isSavingInfo}>
+                <button type="submit" className="btn primary-btn" style={{ width: 'auto', padding: '12px 30px', borderRadius: '6px', fontSize: '16px' }} disabled={isSavingInfo}>
                   {isSavingInfo ? 'Đang lưu...' : 'Lưu thông tin'}
                 </button>
               </div>
             </form>
           </div>
 
-          {/* Form 2: Thay đổi mật khẩu theo format hình ảnh (Bỏ (*) và Không dùng màu trắng) */}
+          {/* Form 2: Thay đổi mật khẩu theo format hình ảnh */}
           <div className="chart-container" style={{ height: 'auto', padding: '30px' }}>
-            <h3 style={{ margin: '0 0 25px 0', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '10px', fontSize: '18px', fontWeight: 'bold', color: '#38bdf8' }}>
+            <h3 style={{ margin: '0 0 25px 0', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '10px', fontSize: '20px', fontWeight: 'bold', color: '#38bdf8' }}>
               Thay đổi mật khẩu truy cập
             </h3>
             
-            <form onSubmit={handleChangePassword} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+            <form onSubmit={handleChangePassword} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
               
               {/* Mật khẩu cũ */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 2.5fr', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '15px' }}>
-                <label style={{ fontSize: '14px', color: '#94a3b8', fontWeight: '500' }}>
+                <label style={{ fontSize: '16px', color: '#94a3b8', fontWeight: '500' }}>
                   Mật khẩu cũ
                 </label>
                 <input 
@@ -196,13 +196,13 @@ function AdminProfile() {
                   placeholder="Nhập mật khẩu cũ"
                   value={passwordForm.currentPassword} 
                   onChange={e => setPasswordForm({ ...passwordForm, currentPassword: e.target.value })} 
-                  style={{ padding: '10px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: '#cbd5e1', fontSize: '14px', outline: 'none' }} 
+                  style={{ padding: '12px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: '#cbd5e1', fontSize: '16px', outline: 'none' }} 
                 />
               </div>
 
               {/* Mật khẩu */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 2.5fr', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '15px' }}>
-                <label style={{ fontSize: '14px', color: '#94a3b8', fontWeight: '500' }}>
+                <label style={{ fontSize: '16px', color: '#94a3b8', fontWeight: '500' }}>
                   Mật khẩu
                 </label>
                 <input 
@@ -211,13 +211,13 @@ function AdminProfile() {
                   placeholder="Nhập mật khẩu mới"
                   value={passwordForm.newPassword} 
                   onChange={e => setPasswordForm({ ...passwordForm, newPassword: e.target.value })} 
-                  style={{ padding: '10px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: '#cbd5e1', fontSize: '14px', outline: 'none' }} 
+                  style={{ padding: '12px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: '#cbd5e1', fontSize: '16px', outline: 'none' }} 
                 />
               </div>
 
               {/* Nhập lại mật khẩu */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 2.5fr', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '15px' }}>
-                <label style={{ fontSize: '14px', color: '#94a3b8', fontWeight: '500' }}>
+                <label style={{ fontSize: '16px', color: '#94a3b8', fontWeight: '500' }}>
                   Nhập lại mật khẩu
                 </label>
                 <input 
@@ -226,7 +226,7 @@ function AdminProfile() {
                   placeholder="Nhập lại mật khẩu mới"
                   value={passwordForm.confirmPassword} 
                   onChange={e => setPasswordForm({ ...passwordForm, confirmPassword: e.target.value })} 
-                  style={{ padding: '10px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: '#cbd5e1', fontSize: '14px', outline: 'none' }} 
+                  style={{ padding: '12px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: '#cbd5e1', fontSize: '16px', outline: 'none' }} 
                 />
               </div>
 
@@ -237,9 +237,9 @@ function AdminProfile() {
                   className="btn" 
                   style={{ 
                     width: 'auto', 
-                    padding: '12px 40px', 
+                    padding: '14px 50px', 
                     borderRadius: '6px', 
-                    fontSize: '15px',
+                    fontSize: '16px',
                     fontWeight: 'bold',
                     background: '#0d47a1', 
                     color: 'white',
