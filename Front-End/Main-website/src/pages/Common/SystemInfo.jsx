@@ -68,7 +68,7 @@ function SystemInfo() {
       </div>
 
       {/* Grid danh sách chức năng */}
-      <h2 style={{ fontSize: '22px', color: 'white', marginBottom: '25px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+      <h2 style={{ fontSize: '22px', color: '#e2e8f0', marginBottom: '25px', display: 'flex', alignItems: 'center', gap: '10px' }}>
         <i className="fa-solid fa-list-check" style={{ color: 'var(--primary-color)' }}></i> Chức Năng Dành Cho Cư Dân
       </h2>
 
@@ -116,7 +116,7 @@ function SystemInfo() {
               }}>
                 <i className={item.icon}></i>
               </div>
-              <h4 style={{ margin: 0, fontSize: '18px', color: '#cbd5e1', fontWeight: 'bold' }}>
+              <h4 style={{ margin: 0, fontSize: '18px', color: '#94a3b8', fontWeight: 'bold' }}>
                 {item.title}
               </h4>
             </div>
