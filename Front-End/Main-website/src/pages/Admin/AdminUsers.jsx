@@ -200,7 +200,7 @@ function AdminUsers() {
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
-        <h1 style={{ margin: 0, color: '#e2e8f0' }}>Quản Lý Người Dùng</h1>
+        <h1 style={{ margin: 0, color: 'var(--primary-color)' }}>Quản Lý Người Dùng</h1>
         <button className="btn primary-btn" onClick={() => setShowAddModal(true)} style={{ width: 'auto', padding: '10px 22px', borderRadius: '8px', fontSize: '15px' }}>
           <i className="fa-solid fa-plus"></i> Thêm Người Dùng
         </button>
@@ -234,7 +234,7 @@ function AdminUsers() {
               {users.map(user => (
                 <tr key={user.id}>
                   <td><strong style={{ color: '#94a3b8' }}>{user.id}</strong></td>
-                  <td style={{ color: '#cbd5e1', fontWeight: '500' }}>{user.name}</td>
+                  <td style={{ color: '#38bdf8', fontWeight: '600' }}>{user.name}</td>
                   <td style={{ color: '#64748b', fontSize: '14px' }}>{user.email}</td>
                   <td>{getRoleBadge(user.role)}</td>
                   <td>{getStatusBadge(user)}</td>
